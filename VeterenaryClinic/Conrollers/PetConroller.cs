@@ -32,16 +32,16 @@ namespace VeterenaryClinic.Controllers
         public void CreateVetRequest(CreatePetPostModel model)
         {
             if (string.IsNullOrWhiteSpace(model.FullNameOwner))
-                throw new System.Exception("Vrong full name owner");
+                throw new System.Exception("wrong full name owner");
 
             if (model.Phone.Length != 12)
-                throw new System.Exception("Vrong phone number");
+                throw new System.Exception("wrong phone number");
 
             if (string.IsNullOrWhiteSpace(model.Breed))
-                throw new System.Exception("Vrong breed");
+                throw new System.Exception("wrong breed");
 
             if (string.IsNullOrWhiteSpace(model.TypeTreatment))
-                throw new System.Exception("Vrong type treatment");
+                throw new System.Exception("wrong type treatment");
 
             var vetModel = _mapper.Map<CreatePetPostModel, VeterenaryClinicDto>(model);
 
