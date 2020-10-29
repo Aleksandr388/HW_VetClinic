@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using VeterenaryClinic.Data.Models;
 using System.Linq;
-using System;
 
 namespace VeterenaryClinic.Data.Repositories
 {
