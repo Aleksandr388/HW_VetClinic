@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VeterenaryClinic.Data.Models;
 using VeterenaryClinic.Data.Repositories;
 using VeterenaryClinic.Domain.Models;
@@ -21,7 +16,7 @@ namespace VeterenaryClinic.Domain
             var mapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<VeterenaryClinicDto, VeterenaryClin>();
-                cfg.CreateMap<VeterenaryClin, VeterenaryClinicDto>();
+                cfg.CreateMap<VeterenaryClin, VeterenaryClinicDto>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperConfig);

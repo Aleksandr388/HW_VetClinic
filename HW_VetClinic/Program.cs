@@ -12,7 +12,6 @@ namespace HW_Veterenary_Clinic
 
             var model = new CreatePetPostModel
             {
-                Id = 1,
                 Date = DateTime.UtcNow,
                 FullNameOwner = "Александр Нещеретный",
                 Phone = "390661394163",
@@ -22,7 +21,7 @@ namespace HW_Veterenary_Clinic
 
             controller.CreateVetRequest(model);
 
-            var response = controller.GetById(1);
+            var response = controller.GetById(0);
 
             Console.WriteLine($"{response.FullNameOwner}, {response.Id}");
 

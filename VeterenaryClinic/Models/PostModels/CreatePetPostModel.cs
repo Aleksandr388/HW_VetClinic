@@ -4,7 +4,6 @@ namespace VeterenaryClinic.Models.PostModels
 {
     public class CreatePetPostModel
     {
-        public int Id { get; set; }
         public string Phone { get; set; }
         public string FullNameOwner { get; set; }
         public DateTime Date { get; set; }
