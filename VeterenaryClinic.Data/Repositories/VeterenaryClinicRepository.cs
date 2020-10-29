@@ -21,7 +21,7 @@ namespace VeterenaryClinic.Data.Repositories
 
         public VeterenaryClin GetById(int id)
         {
-            return VetClinics.Where(x => x.Id == id).FirstOrDefault();
+            return VetClinics.FirstOrDefault(x => x.Id == id);
         }
     }
 }
