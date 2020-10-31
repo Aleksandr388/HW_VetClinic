@@ -6,18 +6,18 @@ using VeterenaryClinic.Models.ViewModels;
 
 namespace VeterenaryClinic.Controllers
 {
-    public class PetController
+    public class VetController
     {
         private readonly VeterenaryClinicService _veterenaryClinicService;
         private readonly IMapper _mapper;
-        public PetController()
+        public VetController()
         {
             _veterenaryClinicService = new VeterenaryClinicService();
 
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<CreatePetPostModel, VeterenaryClinicDto>();
-                cfg.CreateMap<VeterenaryClinicDto, VeterenaryClinicVievModel>();
+                cfg.CreateMap<CreatePetPostModel, VeterenaryClinicModel>();
+                cfg.CreateMap<VeterenaryClinicModel, VeterenaryClinicVievModel>();
             });
 
             _mapper = new Mapper(mapperConfig);
@@ -36,7 +36,7 @@ namespace VeterenaryClinic.Controllers
             if (string.IsNullOrWhiteSpace(model.TypeTreatment))
                 throw new System.Exception("wrong type treatment");
 
-            var vetModel = _mapper.Map<CreatePetPostModel, VeterenaryClinicDto>(model);
+            var vetModel = _mapper.Map<CreatePetPostModel, VeterenaryClinicModel>(model);
 
             _veterenaryClinicService.CreateVetRequest(vetModel);
         }
@@ -45,7 +45,7 @@ namespace VeterenaryClinic.Controllers
         {
             var model = _veterenaryClinicService.GetById(id);
 
-            return _mapper.Map<VeterenaryClinicDto, VeterenaryClinicVievModel>(model);
+            return _mapper.Map<VeterenaryClinicModel, VeterenaryClinicVievModel>(model);
         }
     }
 }

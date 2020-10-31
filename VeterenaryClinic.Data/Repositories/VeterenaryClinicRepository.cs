@@ -1,23 +1,30 @@
 ﻿using System.Collections.Generic;
 using VeterenaryClinic.Data.Models;
 using System.Linq;
+using System;
 
 namespace VeterenaryClinic.Data.Repositories
 {
     public class VeterenaryClinicRepository
     {
-        private List<VeterenaryClin> VetClinics { get; set; }
+        private List<Models.VeterenaryClinics> VetClinics { get; set; }
 
         public VeterenaryClinicRepository()
         {
-            VetClinics = new List<VeterenaryClin>();
+            VetClinics = new List<Models.VeterenaryClinics>();
         }
-        public void Create(VeterenaryClin model)
+
+        public Models.VeterenaryClinics GetByDateTime(DateTime date)
+        {
+            return VetClinics.FirstOrDefault(x => x.Date.CompareTo(date) == 0);
+        }
+
+        public void Create(Models.VeterenaryClinics model)
         {
             VetClinics.Add(model);
         }
 
-        public VeterenaryClin GetById(int id)
+        public Models.VeterenaryClinics GetById(int id)
         {
             return VetClinics.FirstOrDefault(x => x.Id == id);
         }

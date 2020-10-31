@@ -15,25 +15,32 @@ namespace VeterenaryClinic.Domain
 
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<VeterenaryClinicDto, VeterenaryClin>();
-                cfg.CreateMap<VeterenaryClin, VeterenaryClinicDto>().ReverseMap();
+                cfg.CreateMap<VeterenaryClinicModel, VeterenaryClinics>();
+                cfg.CreateMap<VeterenaryClinics, VeterenaryClinicModel>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperConfig);
 
         }
-        public void CreateVetRequest(VeterenaryClinicDto model)
+        
+        
+        public void CreateVetRequest(VeterenaryClinicModel model)
         {
-            var vetModel = _mapper.Map<VeterenaryClinicDto, VeterenaryClin>(model);
+            if (_veterenaryClinicRepository.GetByDateTime(model.Date) != null)
+            {
+                throw new System.Exception("Wrong date or time");
+            }
+
+            var vetModel = _mapper.Map<VeterenaryClinicModel, VeterenaryClinics>(model);
 
             _veterenaryClinicRepository.Create(vetModel);
         }
 
-        public VeterenaryClinicDto GetById(int id)
+        public VeterenaryClinicModel GetById(int id)
         {
             var model = _veterenaryClinicRepository.GetById(id);
 
-            return _mapper.Map<VeterenaryClin, VeterenaryClinicDto>(model);
+            return _mapper.Map<VeterenaryClinics, VeterenaryClinicModel>(model);
         }
 
     }

@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conrollers\PetConroller.cs" />
+    <Compile Include="Controllers\VetController.cs" />
     <Compile Include="Models\PostModels\CreatePetPostModel.cs" />
     <Compile Include="Models\ViewModels\VeterenaryClinicVievModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

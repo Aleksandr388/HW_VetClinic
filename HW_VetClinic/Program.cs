@@ -8,7 +8,7 @@ namespace HW_Veterenary_Clinic
     {
         static void Main(string[] args)
         {
-            var controller = new PetController();
+            var controller = new VetController();
 
             var model = new CreatePetPostModel
             {
