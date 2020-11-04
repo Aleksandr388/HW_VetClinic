@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using System.Collections;
+using System.Collections.Generic;
 using VeterenaryClinic.Domain;
 using VeterenaryClinic.Domain.Models;
 using VeterenaryClinic.Models.PostModels;
@@ -41,11 +43,20 @@ namespace VeterenaryClinic.Controllers
             _veterenaryClinicService.CreateVetRequest(vetModel);
         }
 
-        public VeterenaryClinicVievModel GetById(int id)
+        public IEnumerable<VeterenaryClinicVievModel> GetAll()
         {
-            var model = _veterenaryClinicService.GetById(id);
+            IEnumerable<VeterenaryClinicModel> models = _veterenaryClinicService.GetAll();
 
-            return _mapper.Map<VeterenaryClinicModel, VeterenaryClinicVievModel>(model);
+            return _mapper.Map<IEnumerable<VeterenaryClinicVievModel>>(models);
+        }
+
+        public IEnumerable<VeterenaryClinicVievModel> GetById()
+        {
+            IEnumerable<VeterenaryClinicModel> models = _veterenaryClinicService.GetById();
+
+            var mapperIdModels = _mapper.Map<IEnumerable<VeterenaryClinicVievModel>>(models);
+
+            return mapperIdModels;
         }
     }
 }
