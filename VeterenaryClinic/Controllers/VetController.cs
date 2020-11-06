@@ -50,11 +50,11 @@ namespace VeterenaryClinic.Controllers
             return _mapper.Map<IEnumerable<VeterenaryClinicVievModel>>(models);
         }
 
-        public IEnumerable<VeterenaryClinicVievModel> GetById()
+        public VeterenaryClinicVievModel GetById(int id)
         {
-            IEnumerable<VeterenaryClinicModel> models = _veterenaryClinicService.GetById();
+            VeterenaryClinicModel models = _veterenaryClinicService.GetById(id);
 
-            var mapperIdModels = _mapper.Map<IEnumerable<VeterenaryClinicVievModel>>(models);
+            var mapperIdModels = _mapper.Map<VeterenaryClinicVievModel>(models);
 
             return mapperIdModels;
         }

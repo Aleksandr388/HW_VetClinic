@@ -10,8 +10,8 @@ namespace VeterenaryClinic.Data.Interfaces
 {
     public interface IVeterenaryClinicReposytory
     {
-        VeterenaryClinics Create(VeterenaryClinics model);
-        IEnumerable<VeterenaryClinics> GetAll();
-        IEnumerable<VeterenaryClinics> GetById();
+        VetClinics Create(VetClinics model);
+        IEnumerable<VetClinics> GetAll();
+        VetClinics GetById(int id);
     }
 }

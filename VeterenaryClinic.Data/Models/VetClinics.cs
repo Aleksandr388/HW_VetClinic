@@ -2,7 +2,7 @@
 
 namespace VeterenaryClinic.Data.Models
 {
-    public class VeterenaryClinics
+    public class VetClinics
     {
         public int Id { get; set; }
         public string Phone { get; set; }

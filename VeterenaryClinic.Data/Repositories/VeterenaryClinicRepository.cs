@@ -12,12 +12,14 @@ namespace VeterenaryClinic.Data.Repositories
     {
         private readonly string _connectionString;
 
+        public List<VetClinics> VetClinic { get; set; }
+
         public VeterenaryClinicRepository()
         {
             _connectionString = "Data Source=.;Initial Catalog = VetClinicDataBase; Integrated Security = true";
         }
 
-        public VeterenaryClinics Create(VeterenaryClinics model)
+        public VetClinics Create(VetClinics model)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -38,9 +40,8 @@ namespace VeterenaryClinic.Data.Repositories
             }
         }
 
-        public IEnumerable<VeterenaryClinics> GetAll()
-        {
-            var result = new List<VeterenaryClinics>();
+        public IEnumerable<VetClinics> GetAll()
+        {           
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -54,7 +55,7 @@ namespace VeterenaryClinic.Data.Repositories
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var veterenaryClinics = new VeterenaryClinics();
+                    var veterenaryClinics = new VetClinics();
 
                     veterenaryClinics.Id = reader.GetInt32(0);
                     veterenaryClinics.Phone = reader.GetString(1);
@@ -63,47 +64,17 @@ namespace VeterenaryClinic.Data.Repositories
                     veterenaryClinics.TypeTreatment = reader.GetString(4);
                     veterenaryClinics.Breed = reader.GetString(5);
 
-                    result.Add(veterenaryClinics);
+                    VetClinic.Add(veterenaryClinics);
                 }
                 reader.Close();
 
             }
-            return result;
+            return VetClinic;
         }
 
-        public IEnumerable<VeterenaryClinics> GetById()
+        public VetClinics GetById(int id)
         {
-            var result = new List<VeterenaryClinics>();
-
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand();
-
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM VetClinics WHERE VetClinics.id = 1";
-
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    var veterenaryClinics = new VeterenaryClinics();
-
-                    veterenaryClinics.Id = reader.GetInt32(0);
-                    veterenaryClinics.Phone = reader.GetString(1);
-                    veterenaryClinics.FullNameOwner = reader.GetString(2);
-                    //veterenaryClinics.Date = reader.GetDateTime(3);
-
-                    veterenaryClinics.Date = (DateTime)reader["Date"];
-                    veterenaryClinics.TypeTreatment = reader.GetString(4);
-                    veterenaryClinics.Breed = reader.GetString(5);
-
-                    result.Add(veterenaryClinics);
-                }
-                reader.Close();
-            }
-            return result;
+            return VetClinic.FirstOrDefault(x => x.Id == id);
         }
     }
 }

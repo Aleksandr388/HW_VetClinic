@@ -6,19 +6,21 @@ using Dapper;
 using System.CodeDom;
 using System.Data;
 using System;
+using System.Linq;
 
 namespace VeterenaryClinic.Data.Repositories
 {
     public class VeterenaryClinicDapperRepository : IVeterenaryClinicReposytory
     {
         private readonly string _connectionString;
+        public IEnumerable<VetClinics> VetClinics { get; set; }
 
         public VeterenaryClinicDapperRepository()
         {
             _connectionString = "Data Source=.;Initial Catalog = VetClinicDataBase; Integrated Security = true";
         }
 
-        public VeterenaryClinics Create(VeterenaryClinics model)
+        public VetClinics Create(VetClinics model)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -39,24 +41,21 @@ namespace VeterenaryClinic.Data.Repositories
             }
         }
 
-        public IEnumerable<VeterenaryClinics> GetAll()
+        public IEnumerable<VetClinics> GetAll()
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
-                return connection.Query<VeterenaryClinics>("SELECT * FROM VetClinics");
+                VetClinics = connection.Query<VetClinics>("SELECT * FROM VetClinics");
+
+                return VetClinics;
             }
             
         }
-        public IEnumerable<VeterenaryClinics> GetById()
+        public VetClinics GetById(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                return connection.Query<VeterenaryClinics>("SELECT * FROM VetClinics WHERE VetClinics.id = 1");
-            }
+            return VetClinics.FirstOrDefault(x => x.Id == id);
         }
     }
 }

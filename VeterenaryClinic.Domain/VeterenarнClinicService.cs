@@ -18,8 +18,8 @@ namespace VeterenaryClinic.Domain
         {
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<VeterenaryClinicModel, VeterenaryClinics>();
-                cfg.CreateMap<VeterenaryClinics, VeterenaryClinicModel>().ReverseMap();
+                cfg.CreateMap<VeterenaryClinicModel, VetClinics>();
+                cfg.CreateMap<VetClinics, VeterenaryClinicModel>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperConfig);
@@ -30,25 +30,25 @@ namespace VeterenaryClinic.Domain
 
         public void CreateVetRequest(VeterenaryClinicModel model)
         {
-            var vetModel = _mapper.Map<VeterenaryClinicModel, VeterenaryClinics>(model);
+            var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinics>(model);
 
             _veterenaryClinicRepository.Create(vetModel);
         }
 
         public IEnumerable<VeterenaryClinicModel> GetAll()
         {
-            IEnumerable<VeterenaryClinics> models = _veterenaryClinicDapperRepository.GetAll();
+            IEnumerable<VetClinics> models = _veterenaryClinicDapperRepository.GetAll();
 
             var mappedModels = _mapper.Map<IEnumerable<VeterenaryClinicModel>>(models);
 
             return mappedModels;
         }
 
-        public IEnumerable<VeterenaryClinicModel> GetById()
+        public VeterenaryClinicModel GetById(int id)
         {
-            IEnumerable<VeterenaryClinics> models = _veterenaryClinicDapperRepository.GetById();
+            VetClinics models = _veterenaryClinicDapperRepository.GetById(id);
 
-            var mappedModels = _mapper.Map<IEnumerable<VeterenaryClinicModel>>(models);
+            var mappedModels = _mapper.Map<VeterenaryClinicModel>(models);
 
             return mappedModels;
         }
