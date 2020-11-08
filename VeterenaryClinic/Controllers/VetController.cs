@@ -18,8 +18,12 @@ namespace VeterenaryClinic.Controllers
 
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<CreatePetPostModel, VeterenaryClinicModel>();
-                cfg.CreateMap<VeterenaryClinicModel, VeterenaryClinicVievModel>();
+                    cfg.CreateMap<CreatePetPostModel, VeterenaryClinicModel>();
+                    cfg.CreateMap<VeterenaryClinicModel, VeterenaryClinicVievModel>();
+                    cfg.CreateMap<PetViewModel, PetModel>().ReverseMap();
+                    cfg.CreateMap<PetPostModel, PetModel>().ReverseMap();
+                    cfg.CreateMap<CommunicationViewModel, CommunicationModel>().ReverseMap();
+                    cfg.CreateMap<CommunicationPostModel, CommunicationModel>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperConfig);
@@ -27,16 +31,13 @@ namespace VeterenaryClinic.Controllers
         public void CreateVetRequest(CreatePetPostModel model)
         {
             if (string.IsNullOrWhiteSpace(model.FullNameOwner))
-                throw new System.Exception("wrong full name owner");
-
-            if (model.Phone.Length != 12)
-                throw new System.Exception("wrong phone number");
-
-            if (string.IsNullOrWhiteSpace(model.Breed))
-                throw new System.Exception("wrong breed");
+               throw new System.Exception("wrong full name owner");
 
             if (string.IsNullOrWhiteSpace(model.TypeTreatment))
                 throw new System.Exception("wrong type treatment");
+
+            if (string.IsNullOrWhiteSpace(model.Communication.Email))
+                throw new System.Exception("wrong email");
 
             var vetModel = _mapper.Map<CreatePetPostModel, VeterenaryClinicModel>(model);
 

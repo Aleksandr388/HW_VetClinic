@@ -13,8 +13,11 @@ namespace VeterenaryClinic.Data
 
         }
 
-        public DbSet<VetClinics> VetClinics { get; set; }    
+        public DbSet<VetClinic> VetClinics { get; set; }    
 
+        public DbSet<Pet> Pets { get; set; }
+
+        public DbSet<Communication> Communications { get; set; }
 
     }
 }

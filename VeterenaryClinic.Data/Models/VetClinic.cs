@@ -1,9 +1,10 @@
-﻿using System;
-using VeterenaryClinic.Data.Models;
+﻿using AutoMapper.Configuration.Conventions;
+using System;
+using System.Collections.Generic;
 
-namespace VeterenaryClinic.Domain.Models
+namespace VeterenaryClinic.Data.Models
 {
-    public class VeterenaryClinicModel
+    public class VetClinic
     {
         public int Id { get; set; }
         public string FullNameOwner { get; set; }
@@ -11,8 +12,8 @@ namespace VeterenaryClinic.Domain.Models
         public string TypeTreatment { get; set; }
 
         public int PetId { get; set; }
-        public PetModel Pets { get; set; }
+        public virtual Pet Pets { get; set; } 
         public int CommunicationId { get; set; }
-        public CommunicationModel Communication { get; set; }
+        public virtual Communication Communication { get; set; }
     }
 }

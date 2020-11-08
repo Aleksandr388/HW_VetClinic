@@ -13,14 +13,14 @@ namespace VeterenaryClinic.Data.Repositories
     public class VeterenaryClinicDapperRepository : IVeterenaryClinicReposytory
     {
         private readonly string _connectionString;
-        public IEnumerable<VetClinics> VetClinics { get; set; }
+        public IEnumerable<VetClinic> VetClinics { get; set; }
 
         public VeterenaryClinicDapperRepository()
         {
             _connectionString = "Data Source=.;Initial Catalog = VetClinicDataBase; Integrated Security = true";
         }
 
-        public VetClinics Create(VetClinics model)
+        public VetClinic Create(VetClinic model)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -31,7 +31,7 @@ namespace VeterenaryClinic.Data.Repositories
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
                 command.CommandText = "INSERT INTO VetClinics(Phone,FullNameOwner,Date,TypeTreatment,Breed) OUTPUT Inserted.Id " +
-                    $"VALUES(\'{model.Phone}\',\'{model.FullNameOwner}\',\'{model.Date.ToString("s")}\',\'{model.TypeTreatment}\',\'{model.Breed}\')";
+                    $"VALUES(\'{model.FullNameOwner}\',\'{model.Date.ToString("s")}\',\'{model.TypeTreatment}\')";
 
                 var insertedId = Convert.ToInt32(command.ExecuteScalar());
 
@@ -41,19 +41,19 @@ namespace VeterenaryClinic.Data.Repositories
             }
         }
 
-        public IEnumerable<VetClinics> GetAll()
+        public IEnumerable<VetClinic> GetAll()
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
 
-                VetClinics = connection.Query<VetClinics>("SELECT * FROM VetClinics");
+                VetClinics = connection.Query<VetClinic>("SELECT * FROM VetClinics");
 
                 return VetClinics;
             }
             
         }
-        public VetClinics GetById(int id)
+        public VetClinic GetById(int id)
         {
             return VetClinics.FirstOrDefault(x => x.Id == id);
         }

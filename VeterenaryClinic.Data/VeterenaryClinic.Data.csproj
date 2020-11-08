@@ -58,7 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IVeterenaryClinicReposytory.cs" />
-    <Compile Include="Models\VetClinics.cs" />
+    <Compile Include="Models\Communication.cs" />
+    <Compile Include="Models\Pet.cs" />
+    <Compile Include="Models\VetClinic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\VeterenaryClinicDapperRepository.cs" />
     <Compile Include="Repositories\VeterenaryClinicEFRepository.cs" />

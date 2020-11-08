@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CommunicationModel.cs" />
+    <Compile Include="Models\PetModel.cs" />
     <Compile Include="Models\VeterenaryClinicModel.cs" />
     <Compile Include="VeterenaryClinicService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

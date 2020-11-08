@@ -58,7 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\VetController.cs" />
+    <Compile Include="Models\PostModels\CommunicationPostModel.cs" />
     <Compile Include="Models\PostModels\CreatePetPostModel.cs" />
+    <Compile Include="Models\PostModels\PetPostModel.cs" />
+    <Compile Include="Models\ViewModels\CommunicationViewModel.cs" />
+    <Compile Include="Models\ViewModels\PetViewModel.cs" />
     <Compile Include="Models\ViewModels\VeterenaryClinicVievModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -17,7 +17,7 @@ namespace VeterenaryClinic.Data.Repositories
         {
             _ctx = new VetClinicContext();
         }
-        public VetClinics Create(VetClinics model)
+        public VetClinic Create(VetClinic model)
         {
             _ctx.VetClinics.Add(model);
 
@@ -26,24 +26,22 @@ namespace VeterenaryClinic.Data.Repositories
             return model;
         }
 
-        public IEnumerable<VetClinics> GetAll()
+        public IEnumerable<VetClinic> GetAll()
         {
             return _ctx.VetClinics.ToList(); 
         }
-        public VetClinics GetById(int id)
+        public VetClinic GetById(int id)
         {
             return _ctx.VetClinics.FirstOrDefault(x => x.Id == id);
         }
 
-        public VetClinics Update(VetClinics model)
+        public VetClinic Update(VetClinic model)
         {
             var entity = _ctx.VetClinics.FirstOrDefault(x => x.Id == model.Id);
 
             entity.FullNameOwner = model.FullNameOwner;
-            entity.Phone = model.Phone;
             entity.Date = model.Date;
             entity.TypeTreatment = model.TypeTreatment;
-            entity.Breed = model.Breed;
 
             _ctx.SaveChanges();
 

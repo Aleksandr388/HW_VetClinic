@@ -12,14 +12,14 @@ namespace VeterenaryClinic.Data.Repositories
     {
         private readonly string _connectionString;
 
-        private readonly List<VetClinics> VetClinics = new List<VetClinics>();
+        private readonly List<VetClinic> VetClinics = new List<VetClinic>();
 
         public VeterenaryClinicRepository()
         {
             _connectionString = "Data Source=.;Initial Catalog = VetClinicDataBase; Integrated Security = true";
         }
 
-        public VetClinics Create(VetClinics model)
+        public VetClinic Create(VetClinic model)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -30,7 +30,7 @@ namespace VeterenaryClinic.Data.Repositories
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
                 command.CommandText = "INSERT INTO VetClinics(Phone,FullNameOwner,Date,TypeTreatment,Breed) OUTPUT Inserted.Id " +
-                    $"VALUES(\'{model.Phone}\',\'{model.FullNameOwner}\',\'{model.Date.ToString("s")}\',\'{model.TypeTreatment}\',\'{model.Breed}\')";
+                    $"VALUES(\'{model.FullNameOwner}\',\'{model.Date.ToString("s")}\',\'{model.TypeTreatment}\')";
 
                 var insertedId = Convert.ToInt32(command.ExecuteScalar());
 
@@ -40,7 +40,7 @@ namespace VeterenaryClinic.Data.Repositories
             }
         }
 
-        public IEnumerable<VetClinics> GetAll()
+        public IEnumerable<VetClinic> GetAll()
         {           
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -55,14 +55,12 @@ namespace VeterenaryClinic.Data.Repositories
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var veterenaryClinics = new VetClinics();
+                    var veterenaryClinics = new VetClinic();
 
                     veterenaryClinics.Id = reader.GetInt32(0);
-                    veterenaryClinics.Phone = reader.GetString(1);
                     veterenaryClinics.FullNameOwner = reader.GetString(2);
                     veterenaryClinics.Date = (DateTime)reader["Date"];
                     veterenaryClinics.TypeTreatment = reader.GetString(4);
-                    veterenaryClinics.Breed = reader.GetString(5);
 
                     VetClinics.Add(veterenaryClinics);
                 }
@@ -72,7 +70,7 @@ namespace VeterenaryClinic.Data.Repositories
             return VetClinics;
         }
 
-        public VetClinics GetById(int id)
+        public VetClinic GetById(int id)
         {
             return VetClinics.FirstOrDefault(x => x.Id == id);
         }

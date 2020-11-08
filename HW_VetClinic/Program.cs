@@ -14,9 +14,17 @@ namespace HW_Veterenary_Clinic
             {
                 Date = DateTime.UtcNow,
                 FullNameOwner = "Александр Нещеретный",
-                Phone = "390661394163",
-                Breed = "Такса",
-                TypeTreatment = "Сыпь"
+                TypeTreatment = "Сыпь",
+                Pets = new PetPostModel
+                {
+                    PetName = "Жучка",
+                    PetBreed = "Долматинец"
+                },
+                Communication = new CommunicationPostModel
+                {
+                    Phone = "380661394163",
+                    Email = "Alex@gmail.com"
+                }
             };
 
             controller.CreateVetRequest(model);
