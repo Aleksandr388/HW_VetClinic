@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\VeterenaryClinicModel.cs" />
-    <Compile Include="VeterenarнClinicService.cs" />
+    <Compile Include="VeterenaryClinicService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

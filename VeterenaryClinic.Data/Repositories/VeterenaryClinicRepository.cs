@@ -12,7 +12,7 @@ namespace VeterenaryClinic.Data.Repositories
     {
         private readonly string _connectionString;
 
-        public List<VetClinics> VetClinic { get; set; }
+        private readonly List<VetClinics> VetClinics = new List<VetClinics>();
 
         public VeterenaryClinicRepository()
         {
@@ -64,17 +64,17 @@ namespace VeterenaryClinic.Data.Repositories
                     veterenaryClinics.TypeTreatment = reader.GetString(4);
                     veterenaryClinics.Breed = reader.GetString(5);
 
-                    VetClinic.Add(veterenaryClinics);
+                    VetClinics.Add(veterenaryClinics);
                 }
                 reader.Close();
 
             }
-            return VetClinic;
+            return VetClinics;
         }
 
         public VetClinics GetById(int id)
         {
-            return VetClinic.FirstOrDefault(x => x.Id == id);
+            return VetClinics.FirstOrDefault(x => x.Id == id);
         }
     }
 }

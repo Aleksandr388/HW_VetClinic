@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,16 +28,44 @@ namespace VeterenaryClinic.Data.Repositories
 
         public IEnumerable<VetClinics> GetAll()
         {
-            throw new NotImplementedException();
+            return _ctx.VetClinics.ToList(); 
         }
         public VetClinics GetById(int id)
         {
             return _ctx.VetClinics.FirstOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<VetClinics> GetById()
+        public VetClinics Update(VetClinics model)
         {
-            throw new NotImplementedException();
+            var entity = _ctx.VetClinics.FirstOrDefault(x => x.Id == model.Id);
+
+            entity.FullNameOwner = model.FullNameOwner;
+            entity.Phone = model.Phone;
+            entity.Date = model.Date;
+            entity.TypeTreatment = model.TypeTreatment;
+            entity.Breed = model.Breed;
+
+            _ctx.SaveChanges();
+
+            return model;
+        }
+        
+        public bool Delete(int id)
+        {
+            try
+            {
+                var entity = _ctx.VetClinics.FirstOrDefault(x => x.Id == id);
+
+                _ctx.VetClinics.Remove(entity);
+
+                _ctx.SaveChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

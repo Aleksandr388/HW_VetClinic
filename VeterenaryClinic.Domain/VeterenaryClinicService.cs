@@ -11,9 +11,9 @@ namespace VeterenaryClinic.Domain
 {
     public class VeterenaryClinicService
     {
-        private readonly IVeterenaryClinicReposytory _veterenaryClinicRepository;
         private readonly IMapper _mapper;
         private readonly IVeterenaryClinicReposytory _veterenaryClinicDapperRepository;
+       
         public VeterenaryClinicService()
         {
             var mapperConfig = new MapperConfiguration(cfg =>
@@ -23,16 +23,14 @@ namespace VeterenaryClinic.Domain
             });
 
             _mapper = new Mapper(mapperConfig);
-            _veterenaryClinicRepository = new VeterenaryClinicRepository();
             _veterenaryClinicDapperRepository = new VeterenaryClinicDapperRepository();
-
         }
 
         public void CreateVetRequest(VeterenaryClinicModel model)
         {
             var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinics>(model);
 
-            _veterenaryClinicRepository.Create(vetModel);
+            _veterenaryClinicDapperRepository.Create(vetModel);
         }
 
         public IEnumerable<VeterenaryClinicModel> GetAll()

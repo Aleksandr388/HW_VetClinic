@@ -24,8 +24,6 @@ namespace HW_Veterenary_Clinic
             var allVetClinics = controller.GetAll();
 
             var response = controller.GetById(1);
-
-            Console.WriteLine(response.FullNameOwner, response.Id);
         }
     }
 }
