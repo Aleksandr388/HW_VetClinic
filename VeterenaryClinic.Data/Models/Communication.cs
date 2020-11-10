@@ -11,6 +11,7 @@ namespace VeterenaryClinic.Data.Models
         public int Id { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string AdditionalPhone { get; set; }
 
         public virtual ICollection<VetClinic> VetClinics { get; set; }
     }

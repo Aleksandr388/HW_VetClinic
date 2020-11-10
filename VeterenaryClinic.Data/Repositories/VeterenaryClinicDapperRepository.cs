@@ -30,7 +30,7 @@ namespace VeterenaryClinic.Data.Repositories
 
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO VetClinics(Phone,FullNameOwner,Date,TypeTreatment,Breed) OUTPUT Inserted.Id " +
+                command.CommandText = "INSERT INTO VetClinics(FullNameOwner,Date,TypeTreatment) OUTPUT Inserted.Id " +
                     $"VALUES(\'{model.FullNameOwner}\',\'{model.Date.ToString("s")}\',\'{model.TypeTreatment}\')";
 
                 var insertedId = Convert.ToInt32(command.ExecuteScalar());
@@ -55,7 +55,12 @@ namespace VeterenaryClinic.Data.Repositories
         }
         public VetClinic GetById(int id)
         {
-            return VetClinics.FirstOrDefault(x => x.Id == id);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                return connection.Query<VetClinic>("SELECT * FROM VetClinics WHERE Id=@Id", new { Id = id }).FirstOrDefault();
+            }
         }
     }
 }

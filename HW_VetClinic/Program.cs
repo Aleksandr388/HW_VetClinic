@@ -13,17 +13,18 @@ namespace HW_Veterenary_Clinic
             var model = new CreatePetPostModel
             {
                 Date = DateTime.UtcNow,
-                FullNameOwner = "Александр Нещеретный",
+                FullNameOwner = "Иван Нещеретный",
                 TypeTreatment = "Сыпь",
                 Pets = new PetPostModel
                 {
-                    PetName = "Жучка",
+                    PetName = "Мурка",
                     PetBreed = "Долматинец"
                 },
                 Communication = new CommunicationPostModel
                 {
                     Phone = "380661394163",
-                    Email = "Alex@gmail.com"
+                    Email = "Alexandr@gmail.com",
+                    AdditionalPhone = "380661354256"
                 }
             };
 
@@ -31,7 +32,7 @@ namespace HW_Veterenary_Clinic
 
             var allVetClinics = controller.GetAll();
 
-            var response = controller.GetById(1);
+            var response = controller.GetById(3);
         }
     }
 }
