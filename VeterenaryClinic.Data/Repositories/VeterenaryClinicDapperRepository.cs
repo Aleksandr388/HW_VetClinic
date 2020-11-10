@@ -51,8 +51,14 @@ namespace VeterenaryClinic.Data.Repositories
 
                 return VetClinics;
             }
-            
         }
+
+        public VetClinic GetByDateTime(DateTime date)
+        {
+            return VetClinics.FirstOrDefault(x => x.Date.CompareTo(date) == 0);
+        }
+
+
         public VetClinic GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))

@@ -14,6 +14,8 @@ namespace VeterenaryClinic.Data.Repositories
     {
         private readonly string _connectionString;
 
+        List<VetClinic> result = new List<VetClinic>();
+
         public VeterenaryClinicRepository()
         {
             _connectionString = "Data Source=.;Initial Catalog = VetClinicDataBase; Integrated Security = true";
@@ -38,6 +40,11 @@ namespace VeterenaryClinic.Data.Repositories
 
                 return model;
             }
+        }
+
+        public VetClinic GetByDateTime(DateTime date)
+        {
+            return result.FirstOrDefault(x => x.Date.CompareTo(date) == 0);
         }
 
         public IEnumerable<VetClinic> GetAll()
@@ -73,8 +80,6 @@ namespace VeterenaryClinic.Data.Repositories
 
         public VetClinic GetById(int id)
         {
-            List<VetClinic> result = new List<VetClinic>();
-
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();

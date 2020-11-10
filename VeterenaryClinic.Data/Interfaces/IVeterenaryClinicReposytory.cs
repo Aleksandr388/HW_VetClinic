@@ -13,5 +13,6 @@ namespace VeterenaryClinic.Data.Interfaces
         VetClinic Create(VetClinic model);
         IEnumerable<VetClinic> GetAll();
         VetClinic GetById(int id);
+        VetClinic GetByDateTime(DateTime date);
     }
 }

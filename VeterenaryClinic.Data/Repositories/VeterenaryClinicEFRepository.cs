@@ -26,6 +26,11 @@ namespace VeterenaryClinic.Data.Repositories
             return model;
         }
 
+        public VetClinic GetByDateTime(DateTime date)
+        {
+            return _ctx.VetClinics.FirstOrDefault(x => x.Date.CompareTo(date) == 0);
+        }
+
         public IEnumerable<VetClinic> GetAll()
         {
             return _ctx.VetClinics.ToList(); 

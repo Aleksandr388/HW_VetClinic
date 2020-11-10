@@ -25,11 +25,17 @@ namespace VeterenaryClinic.Domain
             });
 
             _mapper = new Mapper(mapperConfig);
-            _veterenaryClinicDapperRepository = new VeterenaryClinicEFRepository();
+            _veterenaryClinicDapperRepository = new VeterenaryClinicDapperRepository();
         }
 
         public void CreateVetRequest(VeterenaryClinicModel model)
         {
+            if (_veterenaryClinicDapperRepository.GetByDateTime(model.Date) != null)
+            {
+                throw new System.Exception("Choose another date and time");
+            }
+            
+
             var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinic>(model);
 
             _veterenaryClinicDapperRepository.Create(vetModel);
