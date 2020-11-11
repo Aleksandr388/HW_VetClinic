@@ -66,11 +66,6 @@ namespace VeterenaryClinic.Data.Repositories
                 return false;
             }
         }
-        public VetClinic GetByDateTime(DateTime date)
-        {
-            return _ctx.VetClinics.FirstOrDefault(x => x.Date.CompareTo(date) == 0);
-        }
-
         public VetClinic GetByName(string fullName)
         {
             return _ctx.VetClinics.FirstOrDefault(x => x.FullNameOwner == fullName);

@@ -13,7 +13,7 @@ namespace HW_Veterenary_Clinic
             var model = new CreatePetPostModel
             {
                 Date = DateTime.UtcNow,
-                FullNameOwner = "David Нещеретный",
+                FullNameOwner = "Alex Нещеретный",
                 TypeTreatment = "Сыпь",
                 Pets = new PetPostModel
                 {

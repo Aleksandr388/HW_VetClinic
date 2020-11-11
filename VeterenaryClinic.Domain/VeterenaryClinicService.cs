@@ -32,21 +32,20 @@ namespace VeterenaryClinic.Domain
 
         public void CreateVetRequest(VeterenaryClinicModel model)
         {
-            
-            if (_veterenaryClinicEFRepository.GetByDateTime(model.Date) != null)
-            {
-                throw new Exception("Wrong time");
-            }
-
             if (_veterenaryClinicEFRepository.GetByName(model.FullNameOwner) != null)
             {
                model.Prices.PriceValue = model.Prices.PriceValue * 0.8;
-            }
-            
-              var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinic>(model);
 
-              _veterenaryClinicEFRepository.Create(vetModel);
-            
+               var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinic>(model);
+
+               _veterenaryClinicEFRepository.Create(vetModel);
+            }
+            else
+            {
+                var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinic>(model);
+
+                _veterenaryClinicEFRepository.Create(vetModel);
+            }
         }
 
         public IEnumerable<VeterenaryClinicModel> GetAll()

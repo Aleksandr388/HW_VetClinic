@@ -106,6 +106,10 @@
     <Compile Include="Migrations\202011110651421_Add_Price_Table.Designer.cs">
       <DependentUpon>202011110651421_Add_Price_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011111445140_Update.cs" />
+    <Compile Include="Migrations\202011111445140_Update.designer.cs">
+      <DependentUpon>202011111445140_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Communication.cs" />
     <Compile Include="Models\Pet.cs" />
@@ -136,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011110651421_Add_Price_Table.resx">
       <DependentUpon>202011110651421_Add_Price_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011111445140_Update.resx">
+      <DependentUpon>202011111445140_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
