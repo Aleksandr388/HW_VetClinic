@@ -42,11 +42,6 @@ namespace VeterenaryClinic.Data.Repositories
             }
         }
 
-        public VetClinic GetByDateTime(DateTime date)
-        {
-            return result.FirstOrDefault(x => x.Date.CompareTo(date) == 0);
-        }
-
         public IEnumerable<VetClinic> GetAll()
         {
             List<VetClinic> result = new List<VetClinic>();
@@ -78,6 +73,11 @@ namespace VeterenaryClinic.Data.Repositories
             return result;
         }
 
+        public VetClinic GetByDateTime(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
         public VetClinic GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -106,6 +106,11 @@ namespace VeterenaryClinic.Data.Repositories
 
             }
             return result.FirstOrDefault(x => x.Id == id);
+        }
+
+        public VetClinic GetByName(string fullName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

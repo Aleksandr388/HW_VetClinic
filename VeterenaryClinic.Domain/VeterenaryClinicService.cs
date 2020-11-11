@@ -5,14 +5,15 @@ using VeterenaryClinic.Data.Models;
 using VeterenaryClinic.Data.Repositories;
 using VeterenaryClinic.Domain.Models;
 using VeterenaryClinic.Data.Interfaces;
-
+using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace VeterenaryClinic.Domain
 {
     public class VeterenaryClinicService
     {
         private readonly IMapper _mapper;
-        private readonly IVeterenaryClinicReposytory _veterenaryClinicDapperRepository;
+        private readonly IVeterenaryClinicReposytory _veterenaryClinicEFRepository;
        
         public VeterenaryClinicService()
         {
@@ -22,28 +23,35 @@ namespace VeterenaryClinic.Domain
                 cfg.CreateMap<VetClinic, VeterenaryClinicModel>().ReverseMap();
                 cfg.CreateMap<PetModel, Pet>().ReverseMap();
                 cfg.CreateMap<CommunicationModel, Communication>().ReverseMap();
+                cfg.CreateMap<PriceModel, Price>().ReverseMap();
             });
 
             _mapper = new Mapper(mapperConfig);
-            _veterenaryClinicDapperRepository = new VeterenaryClinicDapperRepository();
+            _veterenaryClinicEFRepository = new VeterenaryClinicEFRepository();
         }
 
         public void CreateVetRequest(VeterenaryClinicModel model)
         {
-            if (_veterenaryClinicDapperRepository.GetByDateTime(model.Date) != null)
+            
+            if (_veterenaryClinicEFRepository.GetByDateTime(model.Date) != null)
             {
-                throw new System.Exception("Choose another date and time");
+                throw new Exception("Wrong time");
+            }
+
+            if (_veterenaryClinicEFRepository.GetByName(model.FullNameOwner) != null)
+            {
+               model.Prices.PriceValue = model.Prices.PriceValue * 0.8;
             }
             
+              var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinic>(model);
 
-            var vetModel = _mapper.Map<VeterenaryClinicModel, VetClinic>(model);
-
-            _veterenaryClinicDapperRepository.Create(vetModel);
+              _veterenaryClinicEFRepository.Create(vetModel);
+            
         }
 
         public IEnumerable<VeterenaryClinicModel> GetAll()
         {
-            IEnumerable<VetClinic> models = _veterenaryClinicDapperRepository.GetAll();
+            IEnumerable<VetClinic> models = _veterenaryClinicEFRepository.GetAll();
 
             var mappedModels = _mapper.Map<IEnumerable<VeterenaryClinicModel>>(models);
 
@@ -52,7 +60,7 @@ namespace VeterenaryClinic.Domain
 
         public VeterenaryClinicModel GetById(int id)
         {
-            VetClinic models = _veterenaryClinicDapperRepository.GetById(id);
+            VetClinic models = _veterenaryClinicEFRepository.GetById(id);
 
             var mappedModels = _mapper.Map<VeterenaryClinicModel>(models);
 

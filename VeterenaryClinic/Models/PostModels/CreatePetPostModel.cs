@@ -10,7 +10,11 @@ namespace VeterenaryClinic.Models.PostModels
 
         public int PetId { get; set; }
         public PetPostModel Pets { get; set; }
+
         public int CommunicationId { get; set; }
         public CommunicationPostModel Communication { get; set; }
+
+        public int PriceId { get; set; }
+        public PricePostModel Prices { get; set; }
     }
 }

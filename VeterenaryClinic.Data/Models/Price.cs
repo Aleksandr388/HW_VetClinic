@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace VeterenaryClinic.Data.Models
 {
-    public class Pet
+    public class Price
     {
         public int Id { get; set; }
-        public int Age { get; set; }
-        public string PetName { get; set; }
-        public string PetBreed { get; set; }
+        public double PriceValue { get; set; }
 
         public virtual ICollection<VetClinic> VetClinics { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Security.Cryptography.X509Certificates;
 using VeterenaryClinic.Data.Models;
 
 namespace VeterenaryClinic.Data
@@ -18,6 +19,7 @@ namespace VeterenaryClinic.Data
         public DbSet<Pet> Pets { get; set; }
 
         public DbSet<Communication> Communications { get; set; }
+        public DbSet<Price> Prices { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -41,6 +43,11 @@ namespace VeterenaryClinic.Data
                 .HasMany(x => x.VetClinics)
                 .WithRequired(x => x.Pets)
                 .HasForeignKey(x => x.PetId);
+
+            modelBuilder.Entity<Price>()
+                .HasMany(x => x.VetClinics)
+                .WithRequired(x => x.Prices)
+                .HasForeignKey(x => x.PriceId);
         }
     }
 }

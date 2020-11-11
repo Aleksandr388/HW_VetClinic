@@ -18,5 +18,8 @@ namespace VeterenaryClinic.Data.Models
 
         public int CommunicationId { get; set; }
         public virtual Communication Communication { get; set; }
+
+        public int PriceId { get; set; }
+        public virtual Price Prices { get; set; }
     }
 }

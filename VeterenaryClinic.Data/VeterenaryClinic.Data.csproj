@@ -98,9 +98,18 @@
     <Compile Include="Migrations\202011101140054_Add_Fluent_Api.designer.cs">
       <DependentUpon>202011101140054_Add_Fluent_Api.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011101349321_Add_Pets_Age.cs" />
+    <Compile Include="Migrations\202011101349321_Add_Pets_Age.designer.cs">
+      <DependentUpon>202011101349321_Add_Pets_Age.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011110651421_Add_Price_Table.cs" />
+    <Compile Include="Migrations\202011110651421_Add_Price_Table.Designer.cs">
+      <DependentUpon>202011110651421_Add_Price_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Communication.cs" />
     <Compile Include="Models\Pet.cs" />
+    <Compile Include="Models\Price.cs" />
     <Compile Include="Models\VetClinic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\VeterenaryClinicDapperRepository.cs" />
@@ -121,6 +130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011101140054_Add_Fluent_Api.resx">
       <DependentUpon>202011101140054_Add_Fluent_Api.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101349321_Add_Pets_Age.resx">
+      <DependentUpon>202011101349321_Add_Pets_Age.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011110651421_Add_Price_Table.resx">
+      <DependentUpon>202011110651421_Add_Price_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

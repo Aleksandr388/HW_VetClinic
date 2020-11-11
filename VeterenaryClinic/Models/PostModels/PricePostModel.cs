@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace VeterenaryClinic.Models.PostModels
 {
-    public class PetPostModel
+    public class PricePostModel
     {
         public int Id { get; set; }
-        public int Age { get; set; }
-        public string PetName { get; set; }
-        public string PetBreed { get; set; }
+        public decimal PriceValue { get; set; }
 
         public ICollection<CreatePetPostModel> VetClinics { get; set; }
     }

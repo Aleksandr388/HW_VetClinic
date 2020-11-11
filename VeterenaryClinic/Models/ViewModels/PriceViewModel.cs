@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace VeterenaryClinic.Models.ViewModels
 {
-    public class PetViewModel
+    public class PriceViewModel
     {
         public int Id { get; set; }
-        public int Age { get; set; }
-        public string PetName { get; set; }
-        public string PetBreed { get; set; }
-
+        public decimal PriceValue { get; set; }
         public ICollection<VeterenaryClinicVievModel> VetClinics { get; set; }
     }
 }

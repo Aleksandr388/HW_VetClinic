@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Conventions;
+using System;
 using VeterenaryClinic.Data.Models;
 
 namespace VeterenaryClinic.Domain.Models
@@ -12,7 +13,12 @@ namespace VeterenaryClinic.Domain.Models
 
         public int PetId { get; set; }
         public PetModel Pets { get; set; }
+
         public int CommunicationId { get; set; }
         public CommunicationModel Communication { get; set; }
+
+        public int PriceId { get; set; }
+        public PriceModel Prices { get; set; }
+
     }
 }
